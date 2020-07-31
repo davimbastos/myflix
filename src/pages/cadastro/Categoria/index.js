@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import PageDefault from '../../../components/PageDefault';
 import FormField from '../../../components/FormField';
 import Button from '../../../components/Button';
+// eslint-disable-next-line import/no-named-as-default
+import useForm from '../../../hooks/useForm';
 
 function CadastroCategoria() {
   const initialValues = {
@@ -11,23 +13,9 @@ function CadastroCategoria() {
     color: '',
   };
 
+  const { handleChange, values, clearForm } = useForm(initialValues);
+
   const [categories, setCategories] = useState([]);
-  const [values, setValues] = useState(initialValues);
-
-  function setValue(key, value) {
-    setValues({
-      ...values,
-      [key]: value,
-    });
-  }
-
-  function handleChange(e) {
-    // const {getAttribute, value} = e.target;
-    setValue(
-      e.target.getAttribute('name'),
-      e.target.value,
-    );
-  }
 
   useEffect(() => {
     const URL = window.location.hostname.includes('localhost')
@@ -55,7 +43,7 @@ function CadastroCategoria() {
           ...categories,
           values,
         ]);
-        setValues(initialValues);
+        clearForm();
       }}
       >
 
@@ -83,43 +71,6 @@ function CadastroCategoria() {
           onChange={handleChange}
         />
 
-        {/* <div>
-          <label>
-              Nome da Categoria:
-              <input
-                  type="text"
-                  name="name"
-                  value={values.name}
-                  onChange={handleChange}
-
-              />
-          </label>
-        </div>
-
-        <div>
-          <label>
-            Descrição:
-            <textarea
-                type="text"
-                name="description"
-                value={values.description}
-                onChange={handleChange}
-            />
-          </label>
-        </div>
-
-        <div>
-          <label>
-            Cor:
-            <input
-                type="color"
-                name="color"
-                value={values.color}
-                onChange={handleChange}
-            />
-          </label>
-        </div>  */}
-
         <Button>
           Cadastrar
         </Button>
@@ -134,8 +85,8 @@ function CadastroCategoria() {
 
       <ul>
         { categories.map((category) => (
-          <li key={`${category.name}`}>
-            {category.name}
+          <li key={`${category.title}`}>
+            {category.title}
           </li>
         ))}
       </ul>

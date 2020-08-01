@@ -11,9 +11,6 @@ function Home() {
     categoriesRepository.getAllWithVideos()
       .then((categoriesWithVideos) => {
         setInitialData(categoriesWithVideos);
-      })
-      .catch((err) => {
-        console.log(err.message);
       });
   }, []);
 
@@ -22,16 +19,14 @@ function Home() {
 
       {initialData.length === 0 && (<div>Loading...</div>)}
 
-      {/* {JSON.stringify(initialData)} */}
-
       {initialData.map((category, index) => {
         if (index === 0) {
           return (
             <div key={category.id}>
               <BannerMain
-                videoTitle={initialData[0].videos[0].title}
-                url={initialData[0].videos[0].url}
-                videoDescription="O que é Front-end? Trabalhando na área os termos HTML, CSS e JavaScript fazem parte da rotina das desenvolvedoras e desenvolvedores. Mas o que eles fazem, afinal? Descubra com a Vanessa!"
+                videoTitle={initialData[5].videos[5].title}
+                url={initialData[5].videos[5].url}
+                videoDescription="Três programadores conversam sobre maturidade na profissão. Vamos entender de uma vez por todas a diferença entre os níveis e o que realmente faz você um júnior, pleno ou sênior. A gente passa a maior parte do tempo escrevendo código. Agora chegou o momento de falar sobre isso."
               />
               <Carousel
                 ignoreFirstVideo

@@ -19,14 +19,11 @@ function CadastroVideo() {
   });
 
   useEffect(() => {
-    categoriesRepository
-      .getAll()
-      .then(() => {
-        setCategories(categories);
-      });
+    categoriesRepository.getAll().then((categoriesFromServer) => {
+      setCategories(categoriesFromServer);
+    });
   }, []);
 
-  console.log(categoryTitles);
   return (
     <PageDefault>
       <h1>Cadastro de Vídeo</h1>
